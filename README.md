@@ -1,7 +1,7 @@
 # plugin-example
 
-[![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/plugin-navigation.svg)](https://www.npmjs.com/package/@reactioncommerce/plugin-example)
-[![CircleCI](https://circleci.com/gh/reactioncommerce/plugin-navigation.svg?style=svg)](https://circleci.com/gh/reactioncommerce/plugin-example)
+[![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/plugin-example.svg)](https://www.npmjs.com/package/@reactioncommerce/plugin-example)
+[![CircleCI](https://circleci.com/gh/reactioncommerce/plugin-example.svg?style=svg)](https://circleci.com/gh/reactioncommerce/plugin-example)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Summary
