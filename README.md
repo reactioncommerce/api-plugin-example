@@ -1,4 +1,4 @@
-# plugin-example
+# api-plugin-example
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/plugin-example.svg)](https://www.npmjs.com/package/@reactioncommerce/plugin-example)
 [![CircleCI](https://circleci.com/gh/reactioncommerce/plugin-example.svg?style=svg)](https://circleci.com/gh/reactioncommerce/plugin-example)
