@@ -24,12 +24,12 @@
     "url": "https://github.com/reactioncommerce/api-plugin-example/issues"
   },
   "sideEffects": false,
-  "dependencies": {
-    "@reactioncommerce/api-utils": "^1.7.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
     "@reactioncommerce/data-factory": "~1.0.1",
     "@reactioncommerce/eslint-config": "~2.1.0",
@@ -46,6 +46,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "semantic-release": "^17.0.4"
   },
@@ -75,6 +76,16 @@
       "node/no-unsupported-features/es-syntax": "off",
       "node/no-unpublished-import": "off",
       "node/no-unpublished-require": "off"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "prettier": {
