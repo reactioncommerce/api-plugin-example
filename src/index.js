@@ -9,6 +9,6 @@ export default async function register(app) {
   await app.registerPlugin({
     label: "Plugin Example",
     name: "plugin-example",
-    version: pkg.version,
+    version: pkg.version
   });
 }
