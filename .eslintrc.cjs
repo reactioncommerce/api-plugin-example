@@ -1,3 +1,3 @@
 module.exports = {
-  extends: "./node_modules/@reactioncommerce/api-utils/lib/configs/eslintrc.js"
+  extends: "./node_modules/@reactioncommerce/api-utils/lib/configs/eslintrc.cjs"
 };
