@@ -1,3 +1,3 @@
-import register from "./src/index.js";
+import register from "./dist/src/index.js";
 
 export default register;

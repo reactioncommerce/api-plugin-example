@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "es2015",
+    "lib": ["es2015"],
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["node_modules/@types"],
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": true,
+    "rootDir": "./",
+    "outDir": "dist/"
+  },
+  "include": ["src/**/*.js", "src/**/*.ts"],
+  "exclude": ["node_modues"]
+}
