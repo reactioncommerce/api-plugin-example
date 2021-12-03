@@ -5,7 +5,7 @@ import pkg from "../package.json";
  * @param {ReactionAPI} app The ReactionAPI instance
  * @returns {undefined}
  */
-export default async function register(app: any) {
+export default async function register(app) {
   await app.registerPlugin({
     label: "Plugin Example",
     name: "plugin-example",
