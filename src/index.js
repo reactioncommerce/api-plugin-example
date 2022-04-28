@@ -10,7 +10,7 @@ const pkg = require("../package.json");
  */
 export default async function register(app) {
   await app.registerPlugin({
-    label: pkg.description,
+    label: pkg.label,
     name: pkg.name,
     version: pkg.version
   });

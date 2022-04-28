@@ -1,6 +1,7 @@
 {
   "name": "@reactioncommerce/api-plugin-example",
   "description": "Boilerplate Example plugin for the Reaction API",
+  "label": "Example Plugin",
   "version": "0.0.0-development",
   "main": "index.js",
   "type": "module",
