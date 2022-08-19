@@ -26,7 +26,7 @@ A basic `gitignore` file
 
 ### `.nvmrc`
 
-`.nvmrc` sets your plugin to use Node v12.14.1
+`.nvmrc` sets your plugin to use Node v14.18.1
 
 ### `babel.config.cjs`
 
@@ -64,7 +64,7 @@ If you forget to sign your commits, the DCO bot will remind you and give you det
 
 ## License
 
-   Copyright 2020 Reaction Commerce
+   Copyright 2022 Reaction Commerce
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
