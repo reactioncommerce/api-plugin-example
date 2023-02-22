@@ -1,0 +1,11 @@
+extend type ProductVariant {
+  volume: Float
+}
+
+extend input ProductVariantInput {
+  volume: Float
+}
+
+extend type CatalogProduct {
+  volume: Float
+}
