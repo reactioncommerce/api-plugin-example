@@ -3,7 +3,7 @@ import importAsString from "@reactioncommerce/api-utils/importAsString.js";
 const mySchema = importAsString("./schema/schema.graphql");
 // const pkg = createRequire("../package.json");
 const require = createRequire(import.meta.url);
-
+// sadasdasd
 function myStartup(context) {
   context.simpleSchemas.ProductVariant.extend({
     Chassis: {
