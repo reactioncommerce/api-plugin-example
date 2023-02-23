@@ -6,16 +6,36 @@ const require = createRequire(import.meta.url);
 
 function myStartup(context) {
   context.simpleSchemas.ProductVariant.extend({
-    volume: {
-      type: Number,
+    Chassis: {
+      type: String,
+      min: 0,
+      optional: true,
+    },
+    Colour: {
+      type: String,
+      min: 0,
+      optional: true,
+    },
+    Sunroof: {
+      type: String,
       min: 0,
       optional: true,
     },
   });
 
   context.simpleSchemas.CatalogProductVariant.extend({
-    volume: {
-      type: Number,
+    Sunroof: {
+      type: String,
+      min: 0,
+      optional: true,
+    },
+    Colour: {
+      type: String,
+      min: 0,
+      optional: true,
+    },
+    Chassis: {
+      type: String,
       min: 0,
       optional: true,
     },
@@ -31,14 +51,16 @@ function myPublishProductToCatalog(
       const productVariant = variants.find(
         (variant) => variant._id === catalogVariant.variantId
       );
-      catalogVariant.volume = productVariant.volume || null;
+      catalogVariant.Sunroof = productVariant.Sunroof || null;
+      catalogVariant.Colour = productVariant.Colour || null;
+      catalogVariant.Chassis = productVariant.Chassis || null;
     });
 }
 async function register(app) {
   await app.registerPlugin({
     label: "1",
-    name: "name",
-    version: "1.2-pkg.version",
+    name: "ProductNewFieldUpdation",
+    version: "0.1",
     functionsByType: {
       startup: [myStartup],
       publishProductToCatalog: [myPublishProductToCatalog],
