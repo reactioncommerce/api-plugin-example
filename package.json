@@ -2,7 +2,7 @@
   "name": "@codistan-isb/api-plugin-dashboard-stats",
   "description": "Boilerplate Example plugin for the Reaction API",
   "label": "Example Plugin",
-  "version": "1.0.0-development",
+  "version": "1.0.1-development",
   "main": "index.js",
   "type": "module",
   "engines": {
