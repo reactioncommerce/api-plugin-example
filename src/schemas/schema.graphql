@@ -1,0 +1,41 @@
+type DashBoardStats implements Node {
+  "The Order ID"
+  _id: ID!
+  productsSold: String
+  productsActive: String
+  productInCart: String
+  productInCheckout: String
+  productPaymentDone: String
+}
+type Product {
+  id: ID!
+  name: String!
+}
+
+type ProductData {
+  date: String!
+  # product: Product!
+  count: Int!
+}
+type EarningData {
+  date: String!
+  # product: Product!
+  earning: Int!
+}
+type ProductUpload {
+  date: String!
+  count: Int!
+}
+type ProductUploads {
+  currentMonthData: [ProductUpload!]!
+  previousMonthData: [ProductUpload!]!
+}
+
+
+extend type Query {
+  "Get an order by its ID"
+  dashBoardShoppingActivity(shopId: ID!): DashBoardStats
+    productDataGraph: [ProductData!]!
+    earningDataGraph: [EarningData!]!
+    productsUploaded: ProductUploads!
+}
