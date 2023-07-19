@@ -23,19 +23,26 @@ type EarningData {
   earning: Int!
 }
 type ProductUpload {
-  date: String!
-  count: Int!
+  month:String,
+  year:String,
+  count: Int
 }
 type ProductUploads {
   currentMonthData: [ProductUpload!]!
   previousMonthData: [ProductUpload!]!
 }
 
-
+  type Payment {
+    id: ID
+    amount: Money
+    date: DateTime
+    week:String
+  }
 extend type Query {
   "Get an order by its ID"
-  dashBoardShoppingActivity(shopId: ID!): DashBoardStats
-    productDataGraph: [ProductData!]!
-    earningDataGraph: [EarningData!]!
-    productsUploaded: ProductUploads!
+  productImpression(shopId: ID!): [ProductUpload]
+  productDataGraph: [ProductData!]!
+  earningDataGraph: [EarningData!]!
+   paymentsgraph: [Payment!]!
+  productsUploaded: ProductUploads!
 }

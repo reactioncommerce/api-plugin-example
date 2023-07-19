@@ -7,6 +7,11 @@ export default async function register(app) {
     label: "Dashboard-stats",
     name: "Dashboard-stats",
     version: pkg.version,
+    collections: {
+      ProductImpression: {
+        name: "ProductImpression",
+      },
+    },
     i18n,
     graphQL: {
       resolvers,
