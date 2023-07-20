@@ -22,27 +22,37 @@ type EarningData {
   # product: Product!
   earning: Int!
 }
-type ProductUpload {
-  month:String,
-  year:String,
-  count: Int
-}
+
+
 type ProductUploads {
   currentMonthData: [ProductUpload!]!
   previousMonthData: [ProductUpload!]!
 }
 
+type ProductsUploadedResponse {
+  isVisibleTrue: [ProductUpload]
+  isVisibleFalse: [ProductUpload]
+}
+type ProductUpload {
+  count: Int
+  month: String
+  year: String
+  isVisible: Boolean
+}
   type Payment {
     id: ID
-    amount: Money
+  money:String
     date: DateTime
     week:String
   }
+  # //   productImpression(shopId: ID!): [ProductUpload]
+  #  productsUploaded(shopId: ID! sellerId:ID!): ProductsUploadedResponse    paymentsgraph: [Payment!]! these query working need to change accordingly 
 extend type Query {
   "Get an order by its ID"
   productImpression(shopId: ID!): [ProductUpload]
+   productsUploaded(shopId: ID! sellerId:ID!): ProductsUploadedResponse
   productDataGraph: [ProductData!]!
   earningDataGraph: [EarningData!]!
    paymentsgraph: [Payment!]!
-  productsUploaded: ProductUploads!
+  # productsUploaded: ProductUploads!
 }

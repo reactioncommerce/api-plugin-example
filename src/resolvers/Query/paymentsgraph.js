@@ -1,6 +1,6 @@
-import { decodeOrderOpaqueId, decodeShopOpaqueId } from "../../xforms/id.js";
 import ReactionError from "@reactioncommerce/reaction-error";
 import _ from "lodash";
+
 export default async function paymentsgraph(parent, args, context) {
   if (!context.user) {
     throw new ReactionError("access-denied", "Access Denied");
@@ -8,58 +8,62 @@ export default async function paymentsgraph(parent, args, context) {
 
   const { collections } = context;
   const { Payments } = collections;
-const currentDate = new Date();
-const startOfMonth = new Date(
-  currentDate.getFullYear(),
-  currentDate.getMonth(),
-  1
-).toUTCString();
-const endOfMonth = new Date(
-  currentDate.getFullYear(),
-  currentDate.getMonth() + 2,
-  0
-).toUTCString();
-console.log(startOfMonth, endOfMonth);
-
-// Fetch payments from the database (e.g., MongoDB using Mongoose)
-const payments = await Payments.find({
-  updatedAt: {
-    $gte: startOfMonth,
-    $lte: endOfMonth,
-  },
-}).toArray();
-  console.log(startOfMonth,"new",endOfMonth)
-
+  const currentDate = new Date();
+  const startOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  ).toUTCString();
+  const endOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+  ).toUTCString();
+console.log(startOfMonth,endOfMonth)
   try {
     // Fetch payments from the database (e.g., MongoDB using Mongoose)
-    const payments = await Payments.find({
+    const payment = await Payments.find({
       updatedAt: {
         $gte: startOfMonth,
-       
       },
     }).toArray();
-      console.log(payments,"new");
+    console.log(payment, "new");
 
     // Group and aggregate payments by week
-    const groupedPayments = _.groupBy(payments, (payment) => {
+    const groupedPayments = _.groupBy(payment, (payment) => {
       const paymentDate = new Date(payment.updatedAt);
       const weekNumber = getWeekNumber(paymentDate);
       return `Week ${weekNumber}`;
     });
 
+    // Generate an array of all week numbers within the current month
+    const numberOfWeeks =
+      getWeekNumber(new Date(endOfMonth)) -
+      getWeekNumber(new Date(startOfMonth)) +
+      1;
+    const allWeekNumbers = Array.from(
+      { length: numberOfWeeks },
+      (_, index) => getWeekNumber(new Date(startOfMonth)) + index
+    );
+
     // Prepare the array of Payment objects
-    const result = Object.entries(groupedPayments).map(([week, payments]) => {
-      const totalAmount = payments.reduce(
+    const result = allWeekNumbers.map((weekNumber) => {
+      const weekLabel = `Week ${weekNumber}`;
+      const paymentsInWeek = groupedPayments[weekLabel] || [];
+      const totalAmount = paymentsInWeek.reduce(
         (sum, payment) => sum + payment.amount,
         0
       );
       return {
-        id: week,
-        amount: totalAmount,
-        date: new Date(payments[0].updatedAt), // Assuming all payments in the same week have the same date
+        id: weekLabel,
+        money: totalAmount,
+        date:
+          paymentsInWeek.length > 0
+            ? new Date(paymentsInWeek[0].updatedAt)
+            : null,
       };
     });
-console.log(result)
+
+    console.log(result);
     return result;
   } catch (error) {
     // Handle the error
@@ -84,6 +88,7 @@ function formatDate(date) {
   const formattedDate = date.toLocaleString("en-US", options);
   return formattedDate + " GMT";
 }
+
 function getWeekNumber(date) {
   const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
   const daysPassed = Math.floor(
@@ -92,7 +97,3 @@ function getWeekNumber(date) {
   const weekNumber = Math.ceil((daysPassed + firstDayOfYear.getDay() + 1) / 7);
   return weekNumber;
 }
-
-
-
-  

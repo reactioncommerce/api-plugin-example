@@ -4,26 +4,50 @@ export default async function productsUploaded(parent, args, context) {
   if (!context.user) {
     throw new ReactionError("access-denied", "Access Denied");
   }
-  const currentMonth = new Date().getMonth() + 1;
-  const previousMonth = currentMonth - 1;
 
-  // Dummy data for the current month and previous month
-  const productUploadData = [
-    { date: "2023-06-01", count: 10 },
-    { date: "2023-06-05", count: 15 },
-    { date: "2023-06-10", count: 8 },
-    { date: "2023-05-01", count: 12 },
-    { date: "2023-05-05", count: 5 },
-    { date: "2023-12-10", count: 18 },
-  ];
+  const { collections } = context;
+  const { Products } = collections;
+  const uploaded = await Products.aggregate([
+    {
+      $match: {
+        "uploadedBy.userId": args.sellerId,
+      },
+    },
+    {
+      $group: {
+        _id: {
+          isVisible: "$isVisible",
+          month: {
+            $dateToString: { format: "%m", date: { $toDate: "$createdAt" } },
+          },
+          year: {
+            $dateToString: { format: "%Y", date: { $toDate: "$createdAt" } },
+          },
+        },
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $project: {
+        isVisible: "$_id.isVisible",
+        month: { $toInt: "$_id.month" },
+        year: { $toInt: "$_id.year" },
+        count: 1,
+        _id: 0,
+      },
+    },
+  ]).toArray();
 
-  const currentMonthData = productUploadData.filter(
-    (data) => new Date(data.date).getMonth() + 1 === currentMonth
-  );
+   const uploadedTrue = uploaded.filter((imp) => imp.isVisible === true);
+   const uploadedFalse = uploaded.filter((imp) => imp.isVisible === false);
+console.log(uploadedTrue, uploadedTrue);
 
-  const previousMonthData = productUploadData.filter(
-    (data) => new Date(data.date).getMonth() + 1 === previousMonth
-  );
-
-  return { currentMonthData, previousMonthData };
+ return {
+   productsUploaded: {
+     isVisibleTrue: uploadedTrue.length > 0 ? uploadedTrue[0] : "new",
+     isVisibleFalse: uploadedFalse.length > 0 ? uploadedFalse[0] : "new",
+   },
+ };
 }
+
+
