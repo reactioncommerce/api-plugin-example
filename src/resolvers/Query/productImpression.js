@@ -8,19 +8,7 @@ export default async function productImpression(parent, args, context) {
   const { collections } = context;
   const { ProductImpression } = collections;
 
-  // const impressions = await ProductImpression.aggregate([
-  //   {
-  //     $group: {
-  //       Date: "$Date",
-  //       count: { $sum: 1 },
-  //     },
-  //   },
-  //   {
-  //     $sort: {
-  //       _id: 1,
-  //     },
-  //   },
-  // ]).toArray();
+ // is ma match krwaana h args.seelerid sy aur seller id args m b bejni h aur schema ma be define krni h
   const impressions = await ProductImpression.aggregate([
     // {
     //   $match: {
