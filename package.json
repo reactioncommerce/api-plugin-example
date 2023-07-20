@@ -1,12 +1,12 @@
 {
-  "name": "@reactioncommerce/api-plugin-example",
+  "name": "@umerjaved1/api-plugin-dashboard-stats",
   "description": "Boilerplate Example plugin for the Reaction API",
   "label": "Example Plugin",
-  "version": "0.0.0-development",
+  "version": "1.0.1-development",
   "main": "index.js",
   "type": "module",
   "engines": {
-    "node": ">=14.18.1"
+    "node": ">=12.14.1"
   },
   "homepage": "https://github.com/reactioncommerce/api-plugin-example",
   "url": "https://github.com/reactioncommerce/api-plugin-example",
