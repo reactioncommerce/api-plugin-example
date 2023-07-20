@@ -38,16 +38,15 @@ export default async function productsUploaded(parent, args, context) {
     },
   ]).toArray();
 
-   const uploadedTrue = uploaded.filter((imp) => imp.isVisible === true);
-   const uploadedFalse = uploaded.filter((imp) => imp.isVisible === false);
-console.log(uploadedTrue, uploadedTrue);
+  const uploadedTrue = uploaded.filter((imp) => imp.isVisible === true);
+  const uploadedFalse = uploaded.filter((imp) => imp.isVisible === false);
+  console.log(uploadedTrue, uploadedTrue);
 
- return {
-   productsUploaded: {
-     isVisibleTrue: uploadedTrue.length > 0 ? uploadedTrue[0] : "new",
-     isVisibleFalse: uploadedFalse.length > 0 ? uploadedFalse[0] : "new",
-   },
- };
+  const returnObj = {
+    isVisibleTrue: uploadedTrue,
+    isVisibleFalse: uploadedFalse,
+  };
+
+
+  return returnObj;
 }
-
-
